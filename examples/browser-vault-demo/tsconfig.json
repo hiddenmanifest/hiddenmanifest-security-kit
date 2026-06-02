@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "noEmit": true,
+    "paths": {
+      "@hiddenmanifest/api-contracts": ["../../packages/api-contracts/src/index.ts"],
+      "@hiddenmanifest/vault-crypto": ["../../packages/vault-crypto/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

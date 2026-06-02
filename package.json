@@ -1,0 +1,27 @@
+{
+  "name": "hiddenmanifest-security-kit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "build": "pnpm -r build",
+    "check": "pnpm -r check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --max-warnings=0",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/node": "^25.6.0",
+    "eslint": "^9.39.4",
+    "globals": "^17.4.0",
+    "prettier": "^3.8.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.58.1",
+    "vite": "7.3.1",
+    "vitest": "4.0.18"
+  }
+}
+

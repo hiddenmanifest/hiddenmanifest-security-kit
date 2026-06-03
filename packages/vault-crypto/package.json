@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Browser vault key derivation and encrypted recovery envelope helpers for Hidden Manifest.",
   "type": "module",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "sideEffects": false,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -13,13 +13,17 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "check": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
     "@scure/bip39": "^1.6.0"
-  }
+  },
+  "private": true
 }
-

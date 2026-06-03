@@ -1,10 +1,10 @@
 # Hidden Manifest Security Kit
 
-Public, audit-ready security packages for Hidden Manifest.
+Public, audit-ready source-available security code for Hidden Manifest.
 
 This repository contains the client-side and contract-shape code that users and auditors should be able to inspect: vault key derivation, encrypted recovery envelopes, browser RAILGUN boundaries, transaction safety helpers, and API contracts.
 
-It intentionally does not include the hosted product backend, production DEX routing, affiliate fee strategy, broadcaster service implementation, market-data workers, Redis storage, Phoenix API, deployment configuration, or private infrastructure.
+It intentionally does not include the hosted product backend, production routing, hosted service operations, market-data workers, Redis storage, Phoenix API, deployment configuration, or private infrastructure.
 
 ## Packages
 
@@ -40,5 +40,5 @@ Read:
 
 ## License
 
-MIT
+Source-available audit license
 

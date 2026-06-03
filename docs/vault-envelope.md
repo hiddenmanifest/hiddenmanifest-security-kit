@@ -1,6 +1,6 @@
 # Vault Envelope
 
-The vault recovery envelope is an encrypted backup that lets the browser recover a local privacy vault if browser storage is cleared.
+The vault recovery envelope is an encrypted app-assisted backup that lets the browser recover a local privacy vault if browser storage is cleared. Users can also explicitly export the vault recovery phrase for independent self-custody backup.
 
 ## Envelope Shape
 
@@ -46,12 +46,16 @@ AES-GCM authentication means decryption fails if the wrong key is used or if cip
 
 ## Recovery Assumptions
 
-Recovery depends on:
+Hidden Manifest has two recovery paths.
+
+App-assisted recovery depends on:
 
 - The same wallet signing the same stable recovery message.
 - The stored envelope salt and KDF parameters.
 - The encrypted envelope remaining available.
 - The browser being able to initialize the RAILGUN runtime.
 
-Changing the wallet message breaks recovery for existing envelopes, so the message builder is snapshot-tested.
+Self-custody recovery depends on the user explicitly exporting and safely storing the vault recovery phrase. That phrase should be handled like a private key: anyone with it may be able to recover and access the vault.
+
+Changing the wallet message breaks app-assisted recovery for existing envelopes, so the message builder is snapshot-tested. The exported recovery phrase is a separate backup path from the encrypted envelope.
 

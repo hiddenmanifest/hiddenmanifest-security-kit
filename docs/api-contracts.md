@@ -11,5 +11,5 @@ The package includes contracts for:
 - Broadcaster fee and send requests.
 - BigInt serialization helpers.
 
-Production server behavior, persistence, rate limits, routing, fee strategy, and broadcaster selection remain private.
+Production server behavior, persistence, rate limits, routing, commercial service configuration, and broadcaster selection remain private.
 

@@ -14,7 +14,8 @@ This repo is designed to make Hidden Manifest's core vault security claims inspe
 
 - Vault unlock keys are derived in the browser from wallet signatures.
 - Recovery envelopes store encrypted vault material, not plaintext recovery phrases.
-- The hosted service cannot decrypt a recovery envelope without the wallet-derived key.
+- The hosted service cannot decrypt a recovery envelope by itself without the wallet-derived key.
+- Users can explicitly export the vault recovery phrase for independent self-custody backup.
 - Spend-capable RAILGUN operations are represented as browser-side boundaries.
 - Public API contracts can be reviewed without exposing production service internals.
 
@@ -50,6 +51,7 @@ The code here is intended to make these claims inspectable:
 
 - Vault keys are derived in the browser from wallet signatures.
 - Encrypted vault recovery envelopes cannot be decrypted by the hosted service alone.
+- Exported vault recovery phrases are a separate self-custody path and must be handled like private keys.
 - Browser-side RAILGUN operations are separated from hosted routing and infrastructure.
 - Public API contracts can be reviewed without exposing production adapters.
 

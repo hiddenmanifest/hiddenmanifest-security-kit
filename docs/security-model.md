@@ -8,7 +8,7 @@ Hidden Manifest is designed around a client-side vault boundary.
 - The active vault encryption key for the current browser session.
 - Spend-capable RAILGUN wallet operations.
 - ZK proof generation and populated private transaction payloads.
-- Plaintext vault mnemonic material after local decryption.
+- Plaintext vault mnemonic material after local decryption, unless the user explicitly reveals or copies it for self-custody backup.
 
 ## What Can Reach Hosted Services
 
@@ -21,7 +21,7 @@ Hidden Manifest is designed around a client-side vault boundary.
 
 ## What Hidden Manifest Cannot Decrypt Alone
 
-The hosted service can store an encrypted recovery envelope, but it should not be able to decrypt it without the wallet-derived envelope key. That key is derived in the browser from a wallet signature and is not sent to the server.
+The hosted service can store an encrypted recovery envelope, but it should not be able to decrypt it by itself without the wallet-derived envelope key. That key is derived in the browser from a wallet signature and is not sent to the server. Users may also explicitly export the decrypted vault recovery phrase for independent self-custody backup; anyone with that phrase may be able to recover and access the vault.
 
 ## Third-Party Boundaries
 

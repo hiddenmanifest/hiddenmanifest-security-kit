@@ -5,7 +5,7 @@ This repository is intentionally not a full open-source copy of the Hidden Manif
 It does not include:
 
 - Production 0x or DEX routing implementation.
-- Affiliate fee configuration or monetization logic.
+- Commercial service configuration.
 - Broadcaster service implementation.
 - Redis, Phoenix, or hosted backend code.
 - Market-data ingestion and alert workers.

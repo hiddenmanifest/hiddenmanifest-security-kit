@@ -15,7 +15,7 @@ Review focus:
 
 ## Claim 2: Recovery envelopes are encrypted before storage
 
-The recovery envelope contains encrypted vault material. The hosted service can store and return the envelope, but should not be able to decrypt it without the wallet-derived envelope key.
+The recovery envelope contains encrypted vault material. The hosted service can store and return the envelope, but should not be able to decrypt it by itself without the wallet-derived envelope key. Users may also explicitly export the vault recovery phrase for independent self-custody backup.
 
 Review focus:
 
@@ -24,6 +24,7 @@ Review focus:
 - wrong-key failure behavior
 - tamper failure behavior
 - envelope validator strictness
+- clear separation between encrypted envelope recovery and exported recovery phrase self-custody
 
 ## Claim 3: Spend-capable operations stay behind a browser boundary
 

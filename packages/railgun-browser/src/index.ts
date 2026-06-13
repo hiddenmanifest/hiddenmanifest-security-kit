@@ -103,18 +103,34 @@ export type GeneratePrivateSwapPayload = {
   };
 };
 
+export type GenerateSwapPayload = GeneratePrivateSwapPayload;
+
 export type LocalWalletSnapshot = {
   walletId: string;
   railgunAddress: string;
   shareableViewingKey?: string;
 };
 
+export type SerializedMerkletreeScanProgress = {
+  chain?: string;
+  networkName?: string;
+  progress?: number;
+  completed?: boolean;
+  currentBlock?: number;
+  latestBlock?: number;
+  error?: string;
+};
+
 export type BrowserRailgunPreflight = {
   environment: 'browser-worker';
-  ready: boolean;
+  ready: false;
   mode: 'preflight';
   walletModuleLoaded: boolean;
   proverLoaded: boolean;
+  wasmHelpers: {
+    curve25519Loaded: boolean;
+    poseidonLoaded: boolean;
+  };
   storage: {
     dbNamespace: string;
     artifactNamespace: string;
@@ -201,6 +217,11 @@ export type RailgunWorkerEvent =
       phase: string;
       detail?: string;
       percent?: number;
+    }
+  | {
+      id: string;
+      type: 'scan_progress';
+      progress: SerializedMerkletreeScanProgress;
     }
   | {
       id: string;

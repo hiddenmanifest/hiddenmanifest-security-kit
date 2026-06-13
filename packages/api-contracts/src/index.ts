@@ -66,14 +66,34 @@ export type SwapQuoteRequest = {
 };
 
 export type SwapQuoteResponse = {
-  dryRun: boolean;
+  dryRun?: boolean;
+  message?: string;
+  quote: {
+    price: string;
+    guaranteedPrice: string;
+    minimumBuyAmount: SerializedBigInt;
+    slippageBasisPoints: string;
+    buyERC20Amount: {
+      tokenAddress: string;
+      decimals: string;
+      amount: SerializedBigInt;
+    };
+  };
   sellToken: TokenContract;
   buyToken: TokenContract;
   sellAmount: SerializedBigInt;
   buyAmount: SerializedBigInt;
   minimumBuyAmount: SerializedBigInt;
-  estimatedGas?: SerializedBigInt;
+  priceImpact?: number;
+  estimatedGas: SerializedBigInt;
   appFeeBasisPoints?: number;
+  requestSummary?: {
+    network: string;
+    sellToken: TokenContract;
+    buyToken: TokenContract;
+    sellAmount: SerializedBigInt;
+    slippageBasisPoints?: number;
+  };
 };
 
 export type CrossContractCallContract = {
@@ -107,15 +127,24 @@ export type SwapRecipeResponse = {
 export type BroadcasterFeeRequest = {
   networkName: string;
   tokenAddress: string;
+  tokenDecimals: number;
+  tokenSymbol: string;
+  gasEstimate: SerializedBigInt;
 };
 
 export type BroadcasterFeeResponse = {
-  broadcasterAddress: string;
-  feesID: string;
-  feePerUnitGas: SerializedBigInt;
-  tokenFee: {
+  available: boolean;
+  reason?: string;
+  error?: string;
+  status?: 'disconnected' | 'connecting' | 'connected' | 'error';
+  fee?: {
     tokenAddress: string;
+    tokenSymbol: string;
     amount: SerializedBigInt;
+    amountFormatted: string;
+    broadcasterAddress: string;
+    feesID: string;
+    feePerUnitGas: SerializedBigInt;
   };
 };
 
@@ -130,10 +159,13 @@ export type BroadcasterSendRequest = {
   feesID: string;
   nullifiers: string[];
   overallBatchMinGasPrice: SerializedBigInt;
+  useRelayAdapt: boolean;
 };
 
 export type BroadcasterSendResponse = {
-  txHash: string;
+  success: boolean;
+  txHash?: string;
+  error?: string;
 };
 
 export type BigIntSerialized<T> = T extends bigint
@@ -186,6 +218,18 @@ export const mockVaultEnvelope: VaultEnvelopeContract = {
 
 export const mockSwapQuote: SwapQuoteResponse = {
   dryRun: true,
+  message: 'DRY RUN MODE: This is a simulated quote. No production service call was made.',
+  quote: {
+    price: '1.0',
+    guaranteedPrice: '0.99',
+    minimumBuyAmount: '980000000000000000',
+    slippageBasisPoints: '100',
+    buyERC20Amount: {
+      tokenAddress: '0x0000000000000000000000000000000000000002',
+      decimals: '18',
+      amount: '990000000000000000'
+    }
+  },
   sellToken: {
     address: '0x0000000000000000000000000000000000000001',
     decimals: 18,
@@ -224,16 +268,21 @@ export const mockSwapRecipe: SwapRecipeResponse = {
 };
 
 export const mockBroadcasterFee: BroadcasterFeeResponse = {
-  broadcasterAddress: '0zk_mock_broadcaster',
-  feesID: 'mock-fees-id',
-  feePerUnitGas: '1',
-  tokenFee: {
+  available: true,
+  status: 'connected',
+  fee: {
     tokenAddress: mockSwapQuote.sellToken.address,
-    amount: '1000'
+    tokenSymbol: mockSwapQuote.sellToken.symbol ?? 'SELL',
+    amount: '1000',
+    amountFormatted: '0.000000000000001',
+    broadcasterAddress: '0zk_mock_broadcaster',
+    feesID: 'mock-fees-id',
+    feePerUnitGas: '1'
   }
 };
 
 export const mockBroadcasterSend: BroadcasterSendResponse = {
+  success: true,
   txHash: '0x0000000000000000000000000000000000000000000000000000000000000000'
 };
 

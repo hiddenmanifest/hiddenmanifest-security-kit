@@ -27,7 +27,8 @@ describe('@hiddenmanifest/api-contracts', () => {
     expect(mockVaultEnvelope.version).toBe(2);
     expect(mockSwapQuote.dryRun).toBe(true);
     expect(mockSwapRecipe.crossContractCalls[0]?.data).toBe('0x');
-    expect(mockBroadcasterFee.feesID).toBe('mock-fees-id');
+    expect(mockBroadcasterFee.fee?.feesID).toBe('mock-fees-id');
+    expect(mockBroadcasterSend.success).toBe(true);
     expect(mockBroadcasterSend.txHash).toMatch(/^0x[a-f0-9]{64}$/);
   });
 });

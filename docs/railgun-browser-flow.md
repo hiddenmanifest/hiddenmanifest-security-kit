@@ -33,7 +33,7 @@ The public worker command types support:
 - populate shield transaction
 - generate unshield transaction
 - generate private transfer transaction
-- generate private swap transaction from already-built public recipe calls
+- generate private swap transaction from already-built public recipe calls (`generate_private_swap`)
 
 Production recipe construction, 0x integration, broadcaster endpoint implementation, and hosted service adapters are deliberately outside this package.
 
